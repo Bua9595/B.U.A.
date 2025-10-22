@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BUA Marketplace</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">BUA</div>
+    <nav class="nav-links">
+      <a href="#/explore" class="active">Entdecken</a>
+      <a href="#/collections">Kollektionen</a>
+      <a href="#/activity">Aktivität</a>
+      <a href="#/create">Erstellen</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="search">
+        <input id="search" type="search" placeholder="Suche: Name oder 0x-Vertragsadresse…" autocomplete="off" />
+        <div id="suggest" class="suggest hidden" role="listbox" aria-label="Vorschläge"></div>
+      </div>
+      <button id="walletBtn" class="btn primary">Wallet verbinden</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="filters" id="filters">
+      <h3>Filter</h3>
+      <div class="filter-group">
+        <label class="switch"><input id="f-buynow" type="checkbox"/><span>Kaufen Sofort</span></label>
+        <label class="switch"><input id="f-verified" type="checkbox"/><span>Verifiziert</span></label>
+      </div>
+      <div class="filter-group">
+        <div class="label">Kette</div>
+        <div class="chips">
+          <button class="chip active" data-chain="ETH">Ethereum</button>
+          <button class="chip" data-chain="BASE">Base</button>
+          <button class="chip" data-chain="POLYGON">Polygon</button>
+          <button class="chip" data-chain="SOL">Solana</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="label">Preis</div>
+        <div class="price-row">
+          <input id="price-min" type="number" step="0.001" min="0" placeholder="min" />
+          <span>–</span>
+          <input id="price-max" type="number" step="0.001" min="0" placeholder="max" />
+          <span class="unit">ETH</span>
+        </div>
+        <button id="price-apply" class="btn small">Anwenden</button>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="toolbar">
+        <div class="left">
+          <span id="results-count" class="muted">0 Ergebnisse</span>
+        </div>
+        <div class="right">
+          <label class="sort">
+            <span>Sortierung</span>
+            <select id="sort">
+              <option value="trending">Trending</option>
+              <option value="price-asc">Preis ↑</option>
+              <option value="price-desc">Preis ↓</option>
+              <option value="new">Neu</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div id="grid" class="grid"></div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="dialog" role="dialog" aria-modal="true">
+      <button id="modal-close" class="icon-btn close" aria-label="Schließen">×</button>
+      <div class="dialog-body">
+        <div class="media" id="modal-media"></div>
+        <div class="details">
+          <h2 id="modal-title">—</h2>
+          <div class="price-row">
+            <div class="price">
+              <span class="label">Preis</span>
+              <span class="value" id="modal-price">—</span>
+            </div>
+            <button id="buy-btn" class="btn primary">Sofort kaufen</button>
+            <button id="offer-btn" class="btn">Angebot machen</button>
+          </div>
+          <div class="attrs" id="modal-attrs"></div>
+          <div class="activity" id="modal-activity"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="app.js"></script>
+</body>
+</html>

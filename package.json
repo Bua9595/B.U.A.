@@ -1,0 +1,13 @@
+{
+  "name": "crypto-marketplace-web",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Local web server for Crypto Sweeper demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.server.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

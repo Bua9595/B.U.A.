@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>NFT Marketplace</title>
+    <meta property="og:title" content="NFT Marketplace">
+    <meta property="og:description" content="A self‑hosted crypto marketplace.">
+    <meta property="og:url" content="">
+    <meta name="twitter:card" content="summary_large_image">
+  </head>
+  <body style="margin:0; padding:0; height:100%; font-family: 'Arial', sans-serif;">
+    <iframe id="frame" src="marketplace.html" style="position:absolute; top:0; left:0; right:0; bottom:0; border:none; width:100%; height:100%;"></iframe>
+
+    <script>
+      // Variable to store the iframe title
+      let iframeTitle = "NFT Marketplace";
+
+      // Update the meta tags dynamically (optional)
+      function updateMetaTags() {
+        const pageTitle = document.title;
+        const pageUrl = window.location.href;
+
+        // Update Open Graph tags
+        document.querySelector('meta[property="og:title"]').setAttribute('content', pageTitle);
+        document.querySelector('meta[property="og:url"]').setAttribute('content', pageUrl);
+      }
+
+      // Run this when the page loads
+      window.onload = function() {
+        updateMetaTags();
+
+        // Get iframe's title when it loads
+        const frame = document.getElementById('frame');
+        frame.onload = function() {
+          try {
+            const frameTitleValue = frame.contentDocument.title;
+            if (frameTitleValue) {
+              iframeTitle = frameTitleValue;
+              document.title = iframeTitle;
+              // Update meta tags with new title
+              document.querySelector('meta[property="og:title"]').setAttribute('content', iframeTitle);
+            }
+          } catch (e) {
+            console.error("Could not access iframe title:", e);
+          }
+        };
+      };
+    </script>
+  </body>
+</html>
